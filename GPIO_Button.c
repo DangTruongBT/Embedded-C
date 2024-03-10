@@ -36,11 +36,11 @@ int main()
 	
 	while(1){
 		//trang thai mac dinh cua nut nhat la 0
-		if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) ) //read status of PA0
+		if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_4) ) //read status of PB4
 			{
 				  GPIO_ResetBits(GPIOC, GPIO_Pin_13);} 
 				else{
-					GPIO_SetBits(GPIOC, GPIO_Pin_13); //neu no dang tat thi sang 
+					GPIO_SetBits(GPIOC, GPIO_Pin_13); 
 				}
 			
 		}
