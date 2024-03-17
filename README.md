@@ -118,3 +118,24 @@ Sau khi thiết lập xong, ngoại vi đã có thể sử dụng, tùy thuộc 
 
 </details>
    
+<details><summary>LESSON 2: NGẮT&TIMER</summary>
+<p>
+	
+# 1. NGẮT
+
+Ngắt là 1 sự kiện khẩn cấp xảy ra trong hay ngoài vi điều khiển. Nó yêu MCU phải dừng chương trình chính và thực thi chương trình ngắt.
+
+**Các loại ngắt thông dụng**
+
+Mỗi ngắt có 1 trình phục vụ ngắt, sẽ yêu cầu MCU thực thi lệnh tại trình phục vụ ngắt khi có ngắt xảy ra. Các ngắt có các địa chỉ cố định trong bộ nhớ để giữ các trình phục vụ. Các địa chỉ này gọi là vector ngắt.
+
+
+
+
+
+
+
+</p>
+
+
+</details>
