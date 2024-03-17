@@ -37,8 +37,82 @@
         GPIOx : GPIO cần cấu hình
 
         GPIO_InitStruct : Biến chứa các thông tin để cấu hình cho GPIO có kiểu dữ liệu GPIO_InitTypeDef
+       
+        GPIO_InitTypeDef là 1 kiểu struct chứa các trường sau:
 
+       ```c
+        GPIO_Pin        : Chọn Pin đang cần để cấu hình
+    
+        GPIO_Mode       : Chọn chế độ cho Pin
+    
+        GPIO_Speed      : Chọn tốc độ phản hồi
+
+    Nếu cấu hình Pin là đầu vào, ta có thể chọn:
+
+       
+       Input Pull Down   : Thiết lập đầu vào và mức logic ở mức 0 (0V) khi không tác động (dùng điện trở kéo xuống )
+       Input Pull Up     : Thiết lập đầu vào và mức logic ở mức 1 (3,3V) khi không tác động (dùng điện trở kéo lên nguồn)
+       Input Floating    :
   
+    Nếu cấu hình Pin là đầu ra, ta thường sử dụng:
+
+       Output Push Pull  : Cho phép tùy chỉnh tín hiệu ở 2 mức logic 0 (0V) và 1 (3,3V)'
+       Output Open Drain :
+  
+   Ví dụ: Ta cần cấu hình cho led PC13 và nút bấm PB4
+  
+     ```c
+       void GPIO_Config(){
+      	 GPIO_InitTypeDef GPIO_InitStructure;
+	
+      	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13  ;
+	       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	       GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	
+     	   GPIO_Init(GPIOC, &GPIO_InitStructure);
+	
+      	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4  ;
+      	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+     	   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	
+	       GPIO_Init(GPIOB, &GPIO_InitStructure);
+        }
+     
+Sau khi thiết lập xong, ngoại vi đã có thể sử dụng, tùy thuộc vào mục đích, yêu cầu bài toán để sử dụng các Pin với các hàm tương ứng.
+ - Đọc giá trị đầu vào tại 1 Pin (1 bit) của thanh ghi
+   
+        uint8_t GPIO_ReadInputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+   
+ - Đọc giá trị đầu vào của cả 1 thanh ghi
+
+       uint16_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx);
+
+ - Đọc giá trị đầu ra tại 1 Pin (1 bit) của thanh ghi
+
+       uint8_t GPIO_ReadOutputDataBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+   
+ - Đọc giá trị đầu ra của cả 1 thanh ghi
+
+       uint16_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx);
+   
+ - Thay đổi giá trị lên mức logic 1 của 1 Pin trên thanh ghi
+
+       void GPIO_SetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+   
+ - Thay đổi giá trị về mức logic 0 của 1 Pin trên thanh ghi
+
+       void GPIO_ResetBits(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+ - Thay đổi giá trị của 1 Pin trên thanh ghi
+
+       void GPIO_WriteBit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, BitAction BitVal);
+
+- Thay đổi giá trị của 1 Pin hoặc nhiều Pin trên thanh ghi
+
+       void GPIO_Write(GPIO_TypeDef* GPIOx, uint16_t PortVal);
+
+        
+
 </p>
 
 
